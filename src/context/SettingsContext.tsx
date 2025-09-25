@@ -10,6 +10,8 @@ import type { Language, Mode } from "../types/settings";
 import { createAppTheme } from "../theme/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import i18next from "i18next";
+import { CacheProvider } from "@emotion/react";
+import { rtlCache } from "../theme/rtlCache";
 
 interface SettingsContextType {
   mode: Mode;
@@ -27,7 +29,9 @@ const settingsContext = createContext<SettingsContextType>({
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<Mode>("light");
-  const [lang, setLang] = useState<Language>("en");
+  const [lang, setLang] = useState<Language>(
+    (i18next.language as Language) || "en"
+  );
 
   const theme = useMemo(() => createAppTheme(mode, lang), [mode, lang]);
 
@@ -46,10 +50,12 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
   return (
     <settingsContext.Provider value={{ mode, lang, toggleMode, toggleLang }}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </ThemeProvider>
+      <CacheProvider value={rtlCache}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
+      </CacheProvider>
     </settingsContext.Provider>
   );
 }

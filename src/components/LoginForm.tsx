@@ -16,7 +16,7 @@ import { useSettings } from "../context/SettingsContext";
 export default function LoginForm() {
   const [name, setName] = useState("");
   const [error, setError] = useState<boolean>(false);
-  const { mode } = useSettings();
+  const { mode, lang } = useSettings();
   const navigate = useNavigate();
   const { login } = useAuth();
   const { t } = useTranslation();
@@ -90,7 +90,7 @@ export default function LoginForm() {
             src={`/src/assets/${mode === "light" ? "login" : "login-dark"}.png`}
             alt='Login Illustration'
             style={{
-              borderRadius: "0 16px 16px 0",
+              borderRadius: lang === "en" ? "0 16px 16px 0" : "16px 0 0 16px",
             }}
           />
         </Box>

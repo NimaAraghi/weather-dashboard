@@ -23,6 +23,7 @@ export default function Login() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        bgcolor: "",
         gap: 2.5,
         px: 4,
       }}
