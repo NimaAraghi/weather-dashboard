@@ -5,16 +5,21 @@ import {
   Stack,
   TextField,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { useState, type FormEvent } from "react";
-import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
+import { useSettings } from "../context/SettingsContext";
 
 export default function LoginForm() {
   const [name, setName] = useState("");
   const [error, setError] = useState<boolean>(false);
+  const { mode } = useSettings();
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { t } = useTranslation();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,7 +39,6 @@ export default function LoginForm() {
       sx={{
         maxWidth: 960,
         width: { xs: "100%", sm: 360, md: "100%" },
-
         borderRadius: 4,
       }}
     >
@@ -56,21 +60,21 @@ export default function LoginForm() {
                   mb={2}
                   textAlign='center'
                 >
-                  Login
+                  {t("login")}
                 </Typography>
                 <TextField
                   fullWidth
                   error={error}
-                  helperText={error ? "Please enter a valid name" : ""}
+                  helperText={error ? t("nameInputError") : ""}
                   onChange={(e) => setName(e.target.value)}
                   value={name}
-                  label='Name'
+                  label={t("name")}
                   variant='outlined'
-                  placeholder='Enter Your Name'
+                  placeholder={t("nameInput")}
                 />
               </Box>
               <Button variant='contained' type='submit' fullWidth>
-                Login
+                {t("login")}
               </Button>
             </Stack>
           </form>
@@ -83,7 +87,7 @@ export default function LoginForm() {
           }}
         >
           <img
-            src='/src/assets/login.png'
+            src={`/src/assets/${mode === "light" ? "login" : "login-dark"}.png`}
             alt='Login Illustration'
             style={{
               borderRadius: "0 16px 16px 0",

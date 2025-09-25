@@ -1,0 +1,12 @@
+{
+  "weatherDashboard": "Weather Dashboard",
+  "logout": "Logout",
+  "login": "Login",
+  "name": "Name",
+  "language": "Language",
+  "nameInput": "Enter Your Name",
+  "nameInputError": "Please enter a valid name",
+  "darkMode": "Dark Mode",
+  "settings": "Settings",
+  "welcomeMessage": "Welcome to the Weather Dashboard!"
+}
