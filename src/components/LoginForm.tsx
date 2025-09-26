@@ -5,7 +5,6 @@ import {
   Stack,
   TextField,
   Typography,
-  useTheme,
 } from "@mui/material";
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
@@ -39,10 +38,11 @@ export default function LoginForm() {
       sx={{
         maxWidth: 960,
         width: { xs: "100%", sm: 360, md: "100%" },
+        height: { xs: 320, md: "100%" },
         borderRadius: 4,
       }}
     >
-      <Stack direction='row'>
+      <Stack direction='row' height='100%'>
         {/* Form Section */}
         <Box
           sx={{

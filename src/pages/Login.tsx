@@ -2,18 +2,17 @@ import { Box } from "@mui/material";
 import LoginForm from "../components/LoginForm";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useEffect } from "react";
-import SelectLang from "../components/SelectLang";
 import { useSettings } from "../context/SettingsContext";
+import LanguageSelector from "../components/LanguageSelector";
 
 export default function Login() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { mode, toggleMode } = useSettings();
 
-  //   useEffect(() => {
-  //     if (user) navigate("/dashboard");
-  //   }, []);
+  // useEffect(() => {
+  //   if (user) navigate("/dashboard");
+  // }, []);
 
   return (
     <Box
@@ -23,13 +22,12 @@ export default function Login() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        bgcolor: "",
         gap: 2.5,
-        px: 4,
+        p: 4,
       }}
     >
       <LoginForm />
-      <SelectLang />
+      <LanguageSelector />
       <button onClick={toggleMode}>{mode}</button>
     </Box>
   );

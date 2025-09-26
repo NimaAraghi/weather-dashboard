@@ -11,7 +11,7 @@ import { createAppTheme } from "../theme/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import i18next from "i18next";
 import { CacheProvider } from "@emotion/react";
-import { rtlCache } from "../theme/rtlCache";
+import { ltrCache, rtlCache } from "../theme/dirCache";
 
 interface SettingsContextType {
   mode: Mode;
@@ -28,19 +28,29 @@ const settingsContext = createContext<SettingsContextType>({
 });
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<Mode>("light");
+  const [mode, setMode] = useState<Mode>(
+    (localStorage.getItem("mode") as Mode) || "light"
+  );
   const [lang, setLang] = useState<Language>(
-    (i18next.language as Language) || "en"
+    (localStorage.getItem("lang") as Language) || "en"
   );
 
   const theme = useMemo(() => createAppTheme(mode, lang), [mode, lang]);
 
-  const toggleMode = () =>
-    setMode((prev) => (prev === "dark" ? "light" : "dark"));
+  const toggleMode = () => {
+    setMode((prev) => {
+      const newMode = prev === "dark" ? "light" : "dark";
+      localStorage.setItem("mode", newMode);
+
+      return newMode;
+    });
+  };
   const toggleLang = () =>
     setLang((prev) => {
       const newLang = prev === "en" ? "fa" : "en";
+      localStorage.setItem("lang", newLang);
       i18next.changeLanguage(newLang);
+
       return newLang;
     });
 
@@ -50,7 +60,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
   return (
     <settingsContext.Provider value={{ mode, lang, toggleMode, toggleLang }}>
-      <CacheProvider value={rtlCache}>
+      <CacheProvider value={lang === "fa" ? rtlCache : ltrCache}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           {children}
