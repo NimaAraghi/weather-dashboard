@@ -4,9 +4,10 @@
   "login": "Login",
   "name": "Name",
   "language": "Language",
+  "mode": "Mode",
   "nameInput": "Enter Your Name",
   "nameInputError": "Please enter a valid name",
-  "darkMode": "Dark Mode",
-  "settings": "Settings",
-  "welcomeMessage": "Welcome to the Weather Dashboard!"
+  "darkMode": "Dark",
+  "lightMode": "Light",
+  "locationSelectLable": "Search Your Location"
 }

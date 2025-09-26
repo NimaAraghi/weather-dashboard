@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 import type { Language, Mode } from "../types/settings";
 import { blue, green, neutral, orange, red, tslBlue } from "./colors";
-import { indigo } from "@mui/material/colors";
 
 export const createAppTheme = (mode: Mode, lang: Language) =>
   createTheme({
@@ -18,8 +17,8 @@ export const createAppTheme = (mode: Mode, lang: Language) =>
       success: { main: green[500] },
       info: { main: blue[500] },
       background: {
-        default: mode === "light" ? tslBlue[50] : indigo[800],
-        paper: mode === "light" ? neutral[200] : neutral[800],
+        default: mode === "light" ? tslBlue[50] : "#151D32",
+        paper: mode === "light" ? neutral[50] : "#292F45",
       },
       text: {
         primary: mode === "light" ? neutral[800] : neutral[50],

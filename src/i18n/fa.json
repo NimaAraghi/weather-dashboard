@@ -4,9 +4,10 @@
   "login": "ورود",
   "name": "نام",
   "language": "زبان",
+  "mode": "حالت",
   "nameInput": "نام خود را وارد کنید",
   "nameInputError": "لطفا یک نام معتبر وارد کنید",
-  "darkMode": "حالت تیره",
-  "settings": "تنظیمات",
-  "welcomeMessage": "به داشبورد آب و هوا خوش آمدید!"
+  "darkMode": "تیره",
+  "lightMode": "روشن",
+  "locationSelectLable": "مکان مورد نظر را جستجو کنید"
 }
