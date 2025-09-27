@@ -24,8 +24,6 @@ export function CityProvider({ children }: { children: ReactNode }) {
     lon: 51.3896004,
   });
 
-  console.log(city);
-
   return (
     <cityContext.Provider value={{ city, setCity }}>
       {children}

@@ -45,7 +45,7 @@ export default function Settings() {
       >
         <SettingsOutlinedIcon />
       </IconButton>
-      <Paper>
+      <Box>
         <Menu
           anchorEl={anchorEl}
           open={open}
@@ -53,6 +53,7 @@ export default function Settings() {
           slotProps={{
             paper: {
               sx: {
+                bgcolor: "secondary.main",
                 borderRadius: 2,
                 minWidth: 200,
                 px: 2,
@@ -66,7 +67,7 @@ export default function Settings() {
             >
               <ListItemText primary={t("mode")} />
               <ToggleButtonGroup
-                color='primary'
+                color='info'
                 value={mode}
                 exclusive
                 onChange={toggleMode}
@@ -98,7 +99,7 @@ export default function Settings() {
             >
               <ListItemText primary={t("language")} />
               <ToggleButtonGroup
-                color='primary'
+                color='info'
                 value={lang}
                 exclusive
                 onChange={toggleLang}
@@ -135,7 +136,7 @@ export default function Settings() {
             </Button>
           </MenuList>
         </Menu>
-      </Paper>
+      </Box>
     </>
   );
 }

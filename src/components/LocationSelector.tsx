@@ -30,8 +30,6 @@ export default function LocationSelector() {
         lon: c.lon,
       }));
 
-      console.log(cities);
-
       setOptions(cities);
     } catch (error) {
       const err = error as Error;

@@ -9,5 +9,8 @@
   "nameInputError": "Please enter a valid name",
   "darkMode": "Dark",
   "lightMode": "Light",
-  "locationSelectLable": "Search Your Location"
+  "locationSelectLable": "Search Your Location",
+  "feelsLike": "Feels Like",
+  "high": "High",
+  "low": "Low"
 }

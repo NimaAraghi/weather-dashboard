@@ -7,10 +7,11 @@ export const createAppTheme = (mode: Mode, lang: Language) =>
     direction: lang === "fa" ? "rtl" : "ltr",
     palette: {
       mode,
+      secondary: {
+        main: mode === "light" ? neutral[50] : "#292f45",
+      },
       primary: {
-        main: tslBlue[500],
-        light: tslBlue[50],
-        dark: tslBlue[700],
+        main: mode === "light" ? neutral[500] : "#3F4861",
       },
       error: { main: red[500] },
       warning: { main: orange[500] },
@@ -18,11 +19,11 @@ export const createAppTheme = (mode: Mode, lang: Language) =>
       info: { main: blue[500] },
       background: {
         default: mode === "light" ? tslBlue[50] : "#151D32",
-        paper: mode === "light" ? neutral[50] : "#292F45",
+        paper: mode === "light" ? neutral[200] : "#292F45",
       },
       text: {
-        primary: mode === "light" ? neutral[800] : neutral[50],
-        secondary: mode === "light" ? neutral[600] : neutral[200],
+        primary: mode === "light" ? tslBlue[900] : neutral[50],
+        secondary: mode === "light" ? neutral[700] : neutral[200],
       },
     },
     typography: {

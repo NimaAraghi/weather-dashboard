@@ -1,0 +1,31 @@
+type Locale = "en-US" | "fa-IR";
+type DateType = "fullDate" | "day" | "time";
+
+export function formatDate(
+  date: Date,
+  locale: Locale = "en-US",
+  type: DateType
+) {
+  switch (type) {
+    case "fullDate":
+      return date.toLocaleDateString(locale, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+
+    case "day":
+      return date.toLocaleDateString(locale, {
+        weekday: "long",
+      });
+
+    case "time":
+      return date
+        .toLocaleDateString(locale, {
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+        .replace(" ", "")
+        .split(",")[1];
+  }
+}

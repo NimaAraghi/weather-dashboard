@@ -36,6 +36,7 @@ export default function LoginForm() {
     <Paper
       elevation={4}
       sx={{
+        bgcolor: "secondary.main",
         maxWidth: 960,
         width: { xs: "100%", sm: 360, md: "100%" },
         height: { xs: 320, md: "100%" },
@@ -73,7 +74,7 @@ export default function LoginForm() {
                   placeholder={t("nameInput")}
                 />
               </Box>
-              <Button variant='contained' type='submit' fullWidth>
+              <Button color='info' variant='contained' type='submit' fullWidth>
                 {t("login")}
               </Button>
             </Stack>
