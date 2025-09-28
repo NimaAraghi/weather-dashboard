@@ -1,7 +1,10 @@
+import type { ImageUrl } from "../lib/helpers";
+
 export interface TodayWeather {
   weather: {
     main: string;
     description: string;
+    icon: ImageUrl;
   }[];
   main: {
     temp: number;

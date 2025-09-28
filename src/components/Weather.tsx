@@ -1,4 +1,4 @@
-import { Box, Chip, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Box, Chip, Paper, Stack, Typography } from "@mui/material";
 import { getTodayWeather } from "../services/weather";
 import { useCity } from "../context/CityContext";
 import { useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import { neutral } from "../theme/colors";
 import { formatDate } from "../lib/formmater";
 import { useSettings } from "../context/SettingsContext";
 import type { TodayWeather } from "../types/api";
-import { roundTemp, unixDate } from "../lib/helpers";
+import { imageUrl, roundTemp, unixDate } from "../lib/helpers";
 import { useTranslation } from "react-i18next";
 
 export default function Weather() {
@@ -40,22 +40,24 @@ export default function Weather() {
         borderRadius: 3,
         py: 2.5,
         px: 3,
+        height: 240,
       }}
     >
       {/* right */}
       <Stack direction='row' justifyContent='space-between'>
         <Stack alignItems='start' justifyContent='space-between'>
           <Chip
-            icon={<LocationOnIcon />}
+            icon={<LocationOnIcon color='inherit' />}
             label={data.name}
             sx={{
               bgcolor: neutral[300],
               color: neutral[800],
-              px: 0.5,
+              px: 1,
+              fontWeight: 600,
             }}
           />
           <Box>
-            <Typography variant='h6' fontWeight='bold'>
+            <Typography variant='h4' fontWeight='bold'>
               {formatDate(
                 unixDate(data.dt),
                 lang === "fa" ? "fa-IR" : "en-US",
@@ -80,7 +82,7 @@ export default function Weather() {
             </Stack>
           </Box>
           <Box>
-            <Typography variant='h4' fontWeight='bold'>
+            <Typography variant='h3' fontWeight='bold'>
               {roundTemp(data.main.temp)}°C
             </Typography>
             <Typography variant='body2'>
@@ -92,10 +94,15 @@ export default function Weather() {
         </Stack>
 
         {/* left */}
-        <Stack>
-          <img width={160} src='/src/assets/image 7 (2).png' />
+        <Stack alignItems=''>
+          <img
+            style={{
+              maxWidth: 155,
+            }}
+            src={imageUrl(data.weather[0].icon)}
+          />
           <Box>
-            <Typography fontWeight='bold' variant='h5'>
+            <Typography fontWeight='bold' variant='h4'>
               {data.weather[0].description}
             </Typography>
             <Typography>
