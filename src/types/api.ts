@@ -15,3 +15,14 @@ export interface TodayWeather {
   dt: number;
   name: string;
 }
+
+export interface WeatherPrediction {
+  main: {
+    temp: number;
+  };
+  weather: {
+    description: string;
+    icon: ImageUrl;
+  }[];
+  dt: number;
+}

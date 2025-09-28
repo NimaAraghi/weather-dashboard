@@ -22,7 +22,6 @@ export default function Weather() {
         const res = await getTodayWeather(city.lat, city.lon, lang);
 
         setData(res.data);
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -37,15 +36,14 @@ export default function Weather() {
     <Paper
       elevation={3}
       sx={{
-        borderRadius: 3,
+        borderRadius: 6,
         py: 2.5,
         px: 3,
-        height: 240,
       }}
     >
       {/* right */}
       <Stack direction='row' justifyContent='space-between'>
-        <Stack alignItems='start' justifyContent='space-between'>
+        <Stack alignItems='start' justifyContent='space-around'>
           <Chip
             icon={<LocationOnIcon color='inherit' />}
             label={data.name}
@@ -57,7 +55,7 @@ export default function Weather() {
             }}
           />
           <Box>
-            <Typography variant='h4' fontWeight='bold'>
+            <Typography variant='h4' fontWeight='bold' fontSize={32}>
               {formatDate(
                 unixDate(data.dt),
                 lang === "fa" ? "fa-IR" : "en-US",
@@ -82,7 +80,7 @@ export default function Weather() {
             </Stack>
           </Box>
           <Box>
-            <Typography variant='h3' fontWeight='bold'>
+            <Typography variant='h4' fontWeight='bold' fontSize={32}>
               {roundTemp(data.main.temp)}°C
             </Typography>
             <Typography variant='body2'>
@@ -94,15 +92,15 @@ export default function Weather() {
         </Stack>
 
         {/* left */}
-        <Stack alignItems=''>
+        <Stack alignItems={lang === "fa" ? "flex-end" : "flex-start"}>
           <img
             style={{
-              maxWidth: 155,
+              maxWidth: 140,
             }}
             src={imageUrl(data.weather[0].icon)}
           />
           <Box>
-            <Typography fontWeight='bold' variant='h4'>
+            <Typography fontWeight='bold' variant='h4' fontSize={32}>
               {data.weather[0].description}
             </Typography>
             <Typography>

@@ -12,5 +12,7 @@
   "locationSelectLable": "Search Your Location",
   "feelsLike": "Feels Like",
   "high": "High",
-  "low": "Low"
+  "low": "Low",
+  "today": "Today",
+  "prediction": "2 Weeks Prediction"
 }

@@ -32,12 +32,14 @@ export async function getTodayWeather(
 export async function getTwoWeeksPrediction(
   lat: number,
   lon: number,
+  lang: Language = "en",
   cnt = 14
 ) {
   return axios.get("https://api.openweathermap.org/data/2.5/forecast", {
     params: {
       lat,
       lon,
+      lang,
       cnt,
       units: "metric", // or "imperial"
       appid: API_KEY,
