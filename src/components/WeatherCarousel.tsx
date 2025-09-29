@@ -24,7 +24,7 @@ export default function WeatherCarousel() {
     async function fetchPrediction() {
       const res = await getTwoWeeksPrediction(city.lat, city.lon, lang);
 
-      setData(res.data.list);
+      setData([...res, ...res]);
     }
 
     fetchPrediction();
@@ -32,15 +32,20 @@ export default function WeatherCarousel() {
 
   if (!data) return null;
 
-  console.log(
-    data?.map((d) => formatDate(unixDate(d.dt), "en-US", "fullDate"))
-  );
+  // console.log(
+  //   data.map((d) =>
+  //     unixDate(d.dt).toLocaleDateString("en-US", {
+  //       minute: "2-digit",
+  //       hour: "2-digit",
+  //     })
+  //   )
+  // );
 
   return (
     <Paper
       elevation={3}
       sx={{
-        borderRadius: 3,
+        borderRadius: 6,
         py: 2.5,
         px: 3,
       }}

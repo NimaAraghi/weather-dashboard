@@ -39,6 +39,7 @@ export default function Weather() {
         borderRadius: 6,
         py: 2.5,
         px: 3,
+        height: "100%",
       }}
     >
       {/* right */}
@@ -95,7 +96,7 @@ export default function Weather() {
         <Stack alignItems={lang === "fa" ? "flex-end" : "flex-start"}>
           <img
             style={{
-              maxWidth: 140,
+              maxHeight: 140,
             }}
             src={imageUrl(data.weather[0].icon)}
           />
