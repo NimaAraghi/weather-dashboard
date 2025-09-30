@@ -1,7 +1,6 @@
 import { useCity } from "../context/CityContext";
-import { Paper, Typography } from "@mui/material";
+import { Paper, Skeleton, Typography } from "@mui/material";
 import {
-  LineChart,
   Line,
   XAxis,
   YAxis,
@@ -38,7 +37,18 @@ export default function TemperatureChart() {
     fetchForecast();
   }, [city, lang]);
 
-  if (!data) return null;
+  if (!data)
+    return (
+      <Skeleton
+        sx={{
+          bgcolor: "background.paper",
+          borderRadius: 6,
+        }}
+        variant='rectangular'
+        width='100%'
+        height={250}
+      />
+    );
 
   const chartData = data.map((d) => ({
     month: formatDate(

@@ -1,4 +1,4 @@
-import { Box, Chip, Paper, Stack, Typography } from "@mui/material";
+import { Box, Chip, Paper, Skeleton, Stack, Typography } from "@mui/material";
 import { getTodayWeather } from "../services/weather";
 import { useCity } from "../context/CityContext";
 import { useEffect, useState } from "react";
@@ -30,7 +30,18 @@ export default function Weather() {
     fetchWeather();
   }, [city, lang]);
 
-  if (!data) return null;
+  if (!data)
+    return (
+      <Skeleton
+        sx={{
+          bgcolor: "background.paper",
+          borderRadius: 6,
+        }}
+        variant='rectangular'
+        width='100%'
+        height={250}
+      />
+    );
 
   return (
     <Paper

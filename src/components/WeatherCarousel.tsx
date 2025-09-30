@@ -1,4 +1,11 @@
-import { Box, Card, CardContent, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Paper,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { FreeMode, Autoplay } from "swiper/modules";
@@ -32,16 +39,18 @@ export default function WeatherCarousel() {
     fetchPrediction();
   }, [city, lang]);
 
-  if (!data) return null;
-
-  // console.log(
-  //   data.map((d) =>
-  //     unixDate(d.dt).toLocaleDateString("en-US", {
-  //       minute: "2-digit",
-  //       hour: "2-digit",
-  //     })
-  //   )
-  // );
+  if (!data)
+    return (
+      <Skeleton
+        sx={{
+          bgcolor: "background.paper",
+          borderRadius: 6,
+        }}
+        variant='rectangular'
+        width='100%'
+        height={345}
+      />
+    );
 
   return (
     <Paper
