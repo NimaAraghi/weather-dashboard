@@ -18,6 +18,7 @@ import { useState } from "react";
 import { useSettings } from "../context/SettingsContext";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../context/AuthContext";
+import { tslBlue } from "../theme/colors";
 
 export default function Settings() {
   const { t } = useTranslation();
@@ -36,10 +37,11 @@ export default function Settings() {
   return (
     <>
       <IconButton
-        color='info'
         sx={{
           border: 1,
           borderRadius: 3,
+          color: open ? tslBlue[500] : "#BBC1C4",
+          bgcolor: open ? tslBlue[100] : "transparent",
         }}
         onClick={handleOpen}
       >
@@ -50,10 +52,13 @@ export default function Settings() {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
           slotProps={{
             paper: {
               sx: {
-                bgcolor: "secondary.main",
                 borderRadius: 2,
                 minWidth: 200,
                 px: 2,
@@ -67,6 +72,7 @@ export default function Settings() {
             >
               <ListItemText primary={t("mode")} />
               <ToggleButtonGroup
+                size='small'
                 color='info'
                 value={mode}
                 exclusive
@@ -99,6 +105,7 @@ export default function Settings() {
             >
               <ListItemText primary={t("language")} />
               <ToggleButtonGroup
+                size='small'
                 color='info'
                 value={lang}
                 exclusive
@@ -108,14 +115,14 @@ export default function Settings() {
                 <ToggleButton
                   disabled={lang === "en"}
                   value='en'
-                  sx={{ flex: 1 }}
+                  sx={{ flex: 1, fontFamily: "Arial" }}
                 >
-                  English
+                  En
                 </ToggleButton>
                 <ToggleButton
                   disabled={lang === "fa"}
                   value='fa'
-                  sx={{ flex: 1 }}
+                  sx={{ flex: 1, fontFamily: "Vazirmatn" }}
                 >
                   فا
                 </ToggleButton>

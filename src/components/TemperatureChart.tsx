@@ -17,23 +17,28 @@ import type { WeatherPrediction } from "../types/api";
 import { formatDate } from "../lib/formmater";
 import { roundTemp, unixDate } from "../lib/helpers";
 import { useSettings } from "../context/SettingsContext";
+import { neutral } from "../theme/colors";
+import { useTranslation } from "react-i18next";
 
 export default function TemperatureChart() {
   const [data, setData] = useState<WeatherPrediction[] | null>(null);
   const { city } = useCity();
-  const { lang } = useSettings();
+  const { lang, mode } = useSettings();
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchForecast() {
-      const res = await getTwoWeeksPrediction(city.lat, city.lon, lang);
-      setData(res);
+      try {
+        const res = await getTwoWeeksPrediction(city.lat, city.lon, lang);
+        setData(res);
+      } catch (error) {
+        console.log(error);
+      }
     }
     fetchForecast();
   }, [city, lang]);
 
   if (!data) return null;
-
-  console.log(data);
 
   const chartData = data.map((d) => ({
     month: formatDate(
@@ -55,7 +60,7 @@ export default function TemperatureChart() {
       }}
     >
       <Typography variant='h6' sx={{ mb: 2, fontWeight: "bold" }}>
-        Average Monthly Temperature
+        {t("average")}
       </Typography>
 
       <ResponsiveContainer width='100%' height={160}>
@@ -63,30 +68,52 @@ export default function TemperatureChart() {
           <defs>
             <linearGradient id='areaColor'>
               <stop offset='0%' stopColor='#4CDFE8' stopOpacity={0.8} />
-              <stop offset='50%' stopColor='#7947F7' stopOpacity={0.9} />
+              <stop offset='70%' stopColor='#7947F7' stopOpacity={0.9} />
             </linearGradient>
           </defs>
 
           <CartesianGrid vertical={false} strokeDasharray='3 3' />
 
-          <XAxis dataKey='month' axisLine={false} tickLine={false} />
+          <XAxis
+            dataKey='month'
+            axisLine={false}
+            tickLine={false}
+            tick={{
+              fontSize: 12,
+              fontWeight: "bold",
+              fill: mode === "dark" ? "#fff" : "#000",
+            }}
+          />
 
           <YAxis
             axisLine={false}
             tickLine={false}
-            tick={{ fontSize: 12 }}
             domain={[0, 40]}
             tickFormatter={(v) => `${v}°C`}
             tickCount={5}
+            tick={{
+              fontSize: 12,
+              fontWeight: "bold",
+              fill: mode === "dark" ? "#fff" : "#000",
+            }}
           />
 
-          <Tooltip formatter={(v) => `${v}°C`} />
+          <Tooltip
+            formatter={(v) => `${v}°C`}
+            contentStyle={{
+              backgroundColor: mode === "dark" ? "#151D32" : neutral[300],
+              color: mode === "dark" ? "#fff" : "#000",
+              border: "none",
+              borderRadius: 10,
+            }}
+          />
 
           <Area
             type='linear'
             dataKey='temp'
             fill='url(#areaColor)'
             fillOpacity={0.15}
+            tooltipType='none'
           />
 
           <Line

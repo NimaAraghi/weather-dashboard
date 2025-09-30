@@ -22,9 +22,13 @@ export default function WeatherCarousel() {
 
   useEffect(() => {
     async function fetchPrediction() {
-      const res = await getTwoWeeksPrediction(city.lat, city.lon, lang);
+      try {
+        const res = await getTwoWeeksPrediction(city.lat, city.lon, lang);
 
-      setData([...res, ...res]);
+        setData([...res, ...res]);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     fetchPrediction();
@@ -86,9 +90,7 @@ export default function WeatherCarousel() {
                   (theme) => ({
                     textAlign: "center",
                     bgcolor:
-                      theme.palette.mode === "dark"
-                        ? "primary.main"
-                        : neutral[300],
+                      theme.palette.mode === "dark" ? "#3F4861" : neutral[300],
                     p: 2,
                     borderRadius: 3,
                     boxShadow: 4,

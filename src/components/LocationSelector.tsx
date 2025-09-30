@@ -41,6 +41,7 @@ export default function LocationSelector() {
 
   return (
     <Autocomplete
+      size='small'
       sx={{ width: 300 }}
       options={options}
       loading={loading}

@@ -1,5 +1,5 @@
 type Locale = "en-US" | "fa-IR";
-type DateType = "fullDate" | "month" | "day" | "time";
+type DateType = "fullDate" | "month" | "day" | "time" | "long";
 
 export function formatDate(
   date: Date,
@@ -32,6 +32,15 @@ export function formatDate(
       return date.toLocaleDateString(locale, {
         month: "short",
         day: "2-digit",
+      });
+    case "long":
+      return date.toLocaleDateString(locale, {
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+        weekday: "long",
+        hour: "2-digit",
+        minute: "2-digit",
       });
   }
 }

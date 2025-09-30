@@ -10,9 +10,7 @@ export const createAppTheme = (mode: Mode, lang: Language) =>
       secondary: {
         main: mode === "light" ? neutral[50] : "#292f45",
       },
-      primary: {
-        main: mode === "light" ? neutral[500] : "#3F4861",
-      },
+
       error: { main: red[500] },
       warning: { main: orange[500] },
       success: { main: green[500] },
@@ -28,8 +26,6 @@ export const createAppTheme = (mode: Mode, lang: Language) =>
     },
     typography: {
       fontFamily:
-        lang === "en"
-          ? "Roboto, Arial, sans-serif"
-          : "Vazirmatn, Tahoma, sans-serif",
+        lang === "en" ? "Arial, sans-serif" : "Vazirmatn, Tahoma, sans-serif",
     },
   });
