@@ -13,7 +13,7 @@ export default function Header() {
         display: "flex",
         flexDirection: { xs: "column", sm: "row" },
         justifyContent: "space-between",
-        alignItems: { xs: "flex-start", sm: "center" },
+        alignItems: "center",
         bgcolor: "transparent",
         px: { xs: 2, sm: 3 },
         py: { xs: 2, sm: 1.5 },
@@ -29,7 +29,7 @@ export default function Header() {
         <img
           src='/src/assets/logo.png'
           alt='logo'
-          style={{ width: 40, height: 40 }}
+          style={{ width: 56, height: 56 }}
         />
         <Typography variant='h6'>{t("weatherDashboard")}</Typography>
       </Stack>
@@ -40,7 +40,7 @@ export default function Header() {
         spacing={2}
         sx={{
           width: { xs: "100%", sm: "auto" },
-          justifyContent: { xs: "space-between", sm: "flex-end" },
+          justifyContent: { xs: "center", sm: "flex-start" },
         }}
       >
         <LocationSelector />
