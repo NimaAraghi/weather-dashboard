@@ -1,8 +1,6 @@
 import { Box, Card, CardContent, Paper, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import { FreeMode, Autoplay } from "swiper/modules";
 import { useSettings } from "../context/SettingsContext";
 import { useEffect, useState } from "react";
