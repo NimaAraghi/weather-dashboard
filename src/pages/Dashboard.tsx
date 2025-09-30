@@ -1,7 +1,6 @@
-import { Grid, Skeleton } from "@mui/material";
+import { Grid } from "@mui/material";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { lazy, Suspense } from "react";
 import TemperatureChart from "../components/TemperatureChart";
 import WeatherCarousel from "../components/WeatherCarousel";
 import Weather from "../components/Weather";

@@ -4,15 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useSettings } from "../context/SettingsContext";
 import LanguageSelector from "../components/LanguageSelector";
+import { useEffect } from "react";
 
 export default function Login() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { mode, toggleMode } = useSettings();
 
-  // useEffect(() => {
-  //   if (user) navigate("/dashboard");
-  // }, []);
+  useEffect(() => {
+    if (user) navigate("/dashboard");
+  }, []);
 
   return (
     <Box
